@@ -5,8 +5,8 @@ import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
 interface Props {
-    setValue: React.Dispatch<React.SetStateAction<string | undefined>>;
-    label?: string;
+  setValue: React.Dispatch<React.SetStateAction<string | undefined>>;
+  label?: string;
 }
 
 
@@ -15,22 +15,22 @@ const CampoDeTexto: React.FC<Props> = ({
   label
 
 }) => {
-  
+
   const onChangeValue = (event: ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value);
+    setValue(event.target.value);
   };
 
   return (
     <Box sx={{ '& > :not(style)': { m: 1 }, margin: "1rem" }}>
-      <Box 
-        sx={{ display: 'flex', alignItems: 'flex-end', width: '30vw'}}
+      <Box
+        sx={{ display: 'flex', alignItems: 'flex-end', width: '30vw' }}
       >
         <TextField
           label={label}
-          variant="standard" 
+          variant="standard"
           required
           onChange={onChangeValue}
-          sx={{width: "30vw"}}        
+          sx={{ width: "30vw" }}
         />
       </Box>
     </Box>

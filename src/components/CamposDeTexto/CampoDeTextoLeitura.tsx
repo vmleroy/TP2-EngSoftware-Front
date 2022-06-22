@@ -5,8 +5,8 @@ import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
 interface Props {
-    value?: number,
-    label?: string;
+  value?: number | string,
+  label?: string;
 }
 
 
@@ -17,18 +17,19 @@ const CampoDeTextoLeitura: React.FC<Props> = ({
 }) => {
 
   return (
-    <Box sx={{ '& > :not(style)': { m: 1 }, margin: "1rem" }}>
-      <Box 
-        sx={{ display: 'flex', alignItems: 'flex-end', width: '30vw'}}
+    <Box sx={{ '& > :not(style)': { m: 1 }, margin: '1rem' }}>
+      <Box
+        sx={{ display: 'flex', alignItems: 'flex-end', width: '30vw' }}
       >
         <TextField
           label={label}
-          defaultValue="Apos o cadastro, o IMC aparecera"
+          defaultValue='-'
           value={value}
+          variant="standard"
           InputProps={{
             readOnly: true,
           }}
-          sx={{width:'20rem'}}
+          sx={{ width: '20rem' }}
         />
       </Box>
     </Box>

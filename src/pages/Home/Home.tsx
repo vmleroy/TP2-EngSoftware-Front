@@ -14,14 +14,14 @@ import CampoDeTextoSenha from '../../components/CamposDeTexto/Senha/CampoDeTexto
 export default NomeFuncao/PAG;
  */
 
-const Home = ({}) => {
+const Home = ({ }) => {
 
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>();
   const [senha, setSenha] = useState<string>();
 
-  const handleCliqueBotao = (email: string|undefined, senha: string|undefined) => {
+  const handleCliqueBotao = (email: string | undefined, senha: string | undefined) => {
     console.log(email, senha);
   };
 

@@ -23,7 +23,7 @@ const CampoDeTextoSenha: React.FC<Props> = ({
 
   const [values, setValues] = React.useState<State>({
     password: '',
-    showPassword: false,    
+    showPassword: false,
   });
 
   const handleChange =
@@ -45,27 +45,27 @@ const CampoDeTextoSenha: React.FC<Props> = ({
 
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', margin: "1rem" }}>
-        <FormControl sx={{ m: 1, width: 300}} variant="standard">
-          <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-          <Input
-            required
-            id="standard-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+      <FormControl sx={{ m: 1, width: 300 }} variant="standard">
+        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+        <Input
+          required
+          id="standard-adornment-password"
+          type={values.showPassword ? 'text' : 'password'}
+          value={values.password}
+          onChange={handleChange('password')}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {values.showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </FormControl>
     </Box>
   );
 }
