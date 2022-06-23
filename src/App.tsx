@@ -4,6 +4,7 @@ import Aluno from "./pages/Aluno/Aluno";
 
 import Home from "./pages/Home/Home";
 import Medico from "./pages/Medico/Medico";
+import Professor from "./pages/Professor/Professor";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="medico" element={<Medico />} />
         <Route path="aluno" element={<Aluno />} />
+        <Route path="professor" element={<Professor />} />
       </Routes>
     </Router>
   );

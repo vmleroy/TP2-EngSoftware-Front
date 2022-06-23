@@ -1,4 +1,4 @@
-import IExercicio from "./IExercicios";
+import IExercicio from "./IExercicio";
 
 export default interface ITreino {
     _id: string,
