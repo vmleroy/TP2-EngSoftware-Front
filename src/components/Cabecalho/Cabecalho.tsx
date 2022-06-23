@@ -14,7 +14,7 @@ const Cabecalho: FC<Props> = ({ nomeNoCabecalho }) => {
             <Grid sx={{ minWidth: '100vw' }} >
                 <AppBar position='static' sx={{ backgroundColor: '#120458' }}>
                     <Toolbar >
-                        <Typography align='center' sx={{ flexGrow: 1, fontSize: 32 }}> Academia </Typography>
+                        <Typography align='center' sx={{ flexGrow: 1, fontSize: 32 }}> {nomeNoCabecalho} </Typography>
                     </Toolbar>
                 </AppBar>
             </Grid>

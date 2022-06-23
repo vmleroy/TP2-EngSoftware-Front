@@ -80,7 +80,7 @@ const Medico = ({ }) => {
           minHeight: '100vh'
         }}
       >
-        <Cabecalho nomeNoCabecalho='Academia' />
+        <Cabecalho nomeNoCabecalho='Academia - Medico' />
         <FormularioMedico
           setCpf={setCpf} setAltura={setAltura} setPeso={setPeso} setPressaoArterial={setPressaoArterial}
           setPorcentagemGordura={setPorcentagemGordura} setPorcentagemMassaMagra={setPorcentagemMassaMagra}
