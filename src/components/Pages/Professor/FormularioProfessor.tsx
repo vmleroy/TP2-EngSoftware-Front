@@ -1,23 +1,51 @@
 import React from 'react';
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
+
+import axios from 'axios';
 
 import { Grid, Typography } from '@mui/material';
 
+import IExercicio from '../../../interfaces/IExercicio';
+import ITipoExercicio from '../../../interfaces/ITipoExercicio';
+
 import CampoDeTexto from '../../CamposDeTexto/CampoDeTexto';
 import ExercicioProfessorCardItem from '../../Cards/ExerciciosProfessorCardItem';
-import IExercicio from '../../../interfaces/IExercicio';
+
 
 interface Props {
     setCpf: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setDescricao: React.Dispatch<React.SetStateAction<string | undefined>>
-    setExercicio: React.Dispatch<React.SetStateAction<IExercicio[] | undefined>>
+    setDescricao: React.Dispatch<React.SetStateAction<string | undefined>>,
+    handleSetExercicio: (exercicio: IExercicio) => void
 }
 
-const FormularioProfessor: FC<Props> = ({ setCpf, setDescricao, setExercicio }) => {
+const FormularioProfessor: FC<Props> = ({ setCpf, setDescricao, handleSetExercicio }) => {
 
-    const handleCardClique = (id:string) => {
-        // Gera o exercicio e seta ele em "setExercicio" a partir do objeto gerado.
-        console.log(id)
+    const [tiposExercicios, setTiposExercicios] = useState<ITipoExercicio[]>();
+
+    useEffect(() => {
+        axios.get('https://tp2-engsoft.herokuapp.com/tiposexercicio/')
+            .then(resposta => {
+                setTiposExercicios(resposta.data)
+            })
+            .catch(erro => {
+                console.log(erro);
+            });
+    });
+
+    const handleCardClique = (id:string, series:string|undefined, repeticoes:string|undefined) => {
+        if((series !== '0' && series !== undefined) && (repeticoes !== '0' && repeticoes !== undefined)) {
+            const newExercicio = {tipoExercicio:id, series:series, repeticoes:repeticoes};
+            axios.post('https://tp2-engsoft.herokuapp.com/exercicios/', newExercicio)
+                .then(resposta => {
+                    console.log("Exercicio adicionado com sucesso!");
+                    handleSetExercicio(resposta.data);
+                })
+                .catch(erro =>{
+                    console.log(erro);
+                });
+        }
+        else
+            console.log("Favor preencher series e repeticoes, caso queira adicionar o exercicio")
     }
 
     return (
@@ -70,9 +98,9 @@ const FormularioProfessor: FC<Props> = ({ setCpf, setDescricao, setExercicio }) 
                             Exercicios disponiveis:
                         </Typography>
                         <Grid container item xs={12} margin={1} direction='row'>
-                            <ExercicioProfessorCardItem _id='123' nome='supino' descricao='exercicio de peito' handleClick={handleCardClique}/>
-                            <ExercicioProfessorCardItem _id='456' nome='rosca com halteres' descricao='biceps' handleClick={handleCardClique}/>
-                            <ExercicioProfessorCardItem _id='789' nome='abdominal' descricao='exercicio de abdominal' handleClick={handleCardClique}/>
+                            { tiposExercicios?.map(item => 
+                                <ExercicioProfessorCardItem key={item._id} _id={item._id} nome={item.nome} descricao={item.descricao} handleClick={handleCardClique}/>
+                            )}
                         </Grid>
                     </Grid>
                 </Grid>

@@ -2,7 +2,6 @@ import React, { ChangeEvent, SetStateAction, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 
 interface Props {
   value?: number | string,
