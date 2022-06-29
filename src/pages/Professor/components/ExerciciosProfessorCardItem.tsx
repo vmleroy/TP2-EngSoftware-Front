@@ -3,7 +3,7 @@ import { FC, ChangeEvent, useState } from 'react';
 
 import { Button, Card, CardActions, CardContent, Grid, TextField, Typography } from '@mui/material';
 
-import ICardExercicioProfessor from '../../interfaces/Cards/ICardExercicioProfessor';
+import ICardExercicioProfessor from '../../../interfaces/Cards/ICardExercicioProfessor';
 
 
 const ExercicioProfessorCardItem: FC<ICardExercicioProfessor> = ({

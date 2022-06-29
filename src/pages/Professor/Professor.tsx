@@ -26,8 +26,8 @@ const Professor = ({ }) => {
     }
 
     const handleCliqueBotaoCadastro = ( cpf:string|undefined, descricao:string|undefined, exercicios: IExercicio[]|undefined ) => {
-        console.log(cpf, descricao, exercicios);
-        const newTreino = {cpf:cpf, descricao:descricao, exercicios:exercicios};
+        const newTreino = {CPFTreino:cpf, descricao:descricao, exercicios:exercicios};
+        console.log(newTreino);
         axios.post('https://tp2-engsoft.herokuapp.com/treinos', newTreino)
             .then(resposta => {
                 console.log(resposta.data);

@@ -9,7 +9,7 @@ import IExercicio from '../../../interfaces/IExercicio';
 import ITipoExercicio from '../../../interfaces/ITipoExercicio';
 
 import CampoDeTexto from '../../../components/CamposDeTexto/CampoDeTexto';
-import ExercicioProfessorCardItem from '../../../components/Cards/ExerciciosProfessorCardItem';
+import ExercicioProfessorCardItem from './ExerciciosProfessorCardItem';
 
 
 interface Props {
@@ -25,6 +25,7 @@ const FormularioProfessor: FC<Props> = ({ setCpf, setDescricao, handleSetExercic
 
     useEffect(() => {
         axios.get('https://tp2-engsoft.herokuapp.com/tiposexercicio/')
+        
             .then(resposta => {
                 setTiposExercicios(resposta.data)
             })
