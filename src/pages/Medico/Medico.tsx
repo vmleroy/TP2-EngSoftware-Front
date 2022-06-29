@@ -1,20 +1,21 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+
+import axios from 'axios';
 
 import { Grid, Button } from "@mui/material";
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
-import FormularioMedico from "../../components/Pages/Medico/FormularioMedico";
+import FormularioMedico from "./components/FormularioMedico";
 
 const Medico = ({}) => {
   const [cpfAluno, setCpf] = useState<string>();
   const [altura, setAltura] = useState<string>();
   const [peso, setPeso] = useState<string>();
-  const [pressaoArterial, setPressaoArterial] = useState<string>();
-  const [porcentagemGordura, setPorcentagemGordura] = useState<string>();
-  const [porcentagemMassaMagra, setPorcentagemMassaMagra] = useState<string>();
+  const [pressaoArt, setPressaoArt] = useState<string>();
+  const [gorduraCorp, setGorduraCorp] = useState<string>();
+  const [massMagra, setMassMagra] = useState<string>();
   const [descricao, setDescricao] = useState<string>();
-  const [apto, setApto] = useState<boolean>();
+  const [apto, setApto] = useState<boolean>(false);
 
   const [IMC, setIMC] = useState<number>();
   const [resultadoIMC, setResultadoIMC] = useState<string>();
@@ -46,29 +47,32 @@ const Medico = ({}) => {
     cpfAluno: string | undefined,
     altura: string | undefined,
     peso: string | undefined,
-    pressaoArterial: string | undefined,
-    porcentagemGordura: string | undefined,
-    porcentagemMassaMagra: string | undefined,
+    pressaoArt: string | undefined,
+    gorduraCorp: string | undefined,
+    massMagra: string | undefined,
     IMC: number | undefined,
     resultadoIMC: string | undefined,
     descricao: string | undefined,
     apto: boolean | undefined
   ) => {
     if (IMC !== undefined) {
-      console.log(cpfAluno);
-      console.log(altura);
-      console.log(peso);
-      console.log(pressaoArterial);
-      console.log(porcentagemGordura);
-      console.log(porcentagemMassaMagra);
-      console.log(IMC);
-      console.log(resultadoIMC);
-      console.log(descricao);
-      if (apto !== true) {
-        apto = false;
-        setApto(false);
-      }
-      console.log(apto);
+      if (cpfAluno !== undefined && altura !== undefined && peso !== undefined && descricao !== undefined
+        && pressaoArt !== undefined && gorduraCorp !== undefined && massMagra !== undefined) {
+          const novoExame = {
+            CPFAluno: cpfAluno, descricao: descricao, peso: peso, altura: altura,
+            pressaoArt: pressaoArt, gorduraCorp: gorduraCorp, massMagra: massMagra,
+            IMC: IMC, apto: apto
+          }
+          axios.post("https://tp2-engsoft.herokuapp.com/exames/", novoExame)
+            .then(resposta => {
+              console.log(resposta.data);
+            })
+            .catch(erro => {
+              console.log(erro);
+            })
+        } else {
+          console.log("Dados incompletos, favor preencher todos os campos!");
+        }
     } else {
       console.log("Favor calcular IMC");
     }
@@ -91,9 +95,9 @@ const Medico = ({}) => {
           setCpf={setCpf}
           setAltura={setAltura}
           setPeso={setPeso}
-          setPressaoArterial={setPressaoArterial}
-          setPorcentagemGordura={setPorcentagemGordura}
-          setPorcentagemMassaMagra={setPorcentagemMassaMagra}
+          setPressaoArt={setPressaoArt}
+          setGorduraCorp={setGorduraCorp}
+          setMassMagra={setMassMagra}
           setDescricao={setDescricao}
           setApto={setApto}
           IMC={IMC}
@@ -114,9 +118,9 @@ const Medico = ({}) => {
               cpfAluno,
               altura,
               peso,
-              pressaoArterial,
-              porcentagemGordura,
-              porcentagemMassaMagra,
+              pressaoArt,
+              gorduraCorp,
+              massMagra,
               IMC,
               resultadoIMC,
               descricao,

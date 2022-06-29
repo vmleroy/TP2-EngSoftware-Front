@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Button, Grid } from '@mui/material';
 
 import Cabecalho from '../../components/Cabecalho/Cabecalho';
-import FormularioProfessor from '../../components/Pages/Professor/FormularioProfessor';
+import FormularioProfessor from './components/FormularioProfessor';
 
 import IExercicio from '../../interfaces/IExercicio';
 
@@ -17,20 +17,24 @@ const Professor = ({ }) => {
     const [descricao, setDescricao] = useState<string>();
     const [exercicios, setExercicio] = useState<IExercicio[]>([]);
 
-    const handleSetExercicio = (exercicio: IExercicio) => {
+    const handleSetExercicioAdd = (exercicio: IExercicio) => {
         setExercicio(exercicios => [...exercicios, exercicio] );
+    }
+
+    const handleSetExercicioRemove = (id: string) => {
+        setExercicio( exercicios.filter((item) => (id === item._id)) );
     }
 
     const handleCliqueBotaoCadastro = ( cpf:string|undefined, descricao:string|undefined, exercicios: IExercicio[]|undefined ) => {
         console.log(cpf, descricao, exercicios);
-        // const newTreino = {tipoExercicio:id, series:series, repeticoes:repeticoes};
-        // axios.post('https://tp2-engsoft.herokuapp.com/treinos', newTreino)
-        //     .then(reposta => {
-
-        //     })
-        //     .catch(erro =>  {
-        //         console.log(erro);
-        //     })
+        const newTreino = {cpf:cpf, descricao:descricao, exercicios:exercicios};
+        axios.post('https://tp2-engsoft.herokuapp.com/treinos', newTreino)
+            .then(resposta => {
+                console.log(resposta.data);
+            })
+            .catch(erro =>  {
+                console.log(erro);
+            })
     }
 
     return (
@@ -46,7 +50,8 @@ const Professor = ({ }) => {
                 }}
             >
                 <Cabecalho nomeNoCabecalho='Academia - Professor' />
-                <FormularioProfessor setCpf={setCpfAluno} setDescricao={setDescricao} handleSetExercicio={handleSetExercicio} />
+                <FormularioProfessor setCpf={setCpfAluno} setDescricao={setDescricao} 
+                    handleSetExercicioAdd={handleSetExercicioAdd} handleSetExercicioRemove={handleSetExercicioRemove} />
                 <Button variant='outlined' sx={{ margin: '0.5rem' }}
                     onClick={() => handleCliqueBotaoCadastro(cpf, descricao, exercicios)}
                 >

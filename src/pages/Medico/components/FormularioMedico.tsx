@@ -3,25 +3,25 @@ import { FC } from 'react'
 
 import { Checkbox, Grid, Typography } from '@mui/material'
 
-import CampoDeTexto from '../../CamposDeTexto/CampoDeTexto';
-import CampoDeTextoLeitura from '../../CamposDeTexto/CampoDeTextoLeitura';
+import CampoDeTexto from '../../../components/CamposDeTexto/CampoDeTexto';
+import CampoDeTextoLeitura from '../../../components/CamposDeTexto/CampoDeTextoLeitura';
 
 interface Props {
     setCpf: React.Dispatch<React.SetStateAction<string | undefined>>,
     setAltura: React.Dispatch<React.SetStateAction<string | undefined>>,
     setPeso: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setPressaoArterial: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setPorcentagemGordura: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setPorcentagemMassaMagra: React.Dispatch<React.SetStateAction<string | undefined>>,
+    setPressaoArt: React.Dispatch<React.SetStateAction<string | undefined>>,
+    setGorduraCorp: React.Dispatch<React.SetStateAction<string | undefined>>,
+    setMassMagra: React.Dispatch<React.SetStateAction<string | undefined>>,
     setDescricao: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setApto: React.Dispatch<React.SetStateAction<boolean | undefined>>,
+    setApto: React.Dispatch<React.SetStateAction<boolean>>,
     IMC: number | undefined
     resultadoIMC: string | undefined
 }
 
 const FormularioMedico: FC<Props> = ({
-    setCpf, setAltura, setPeso, setPressaoArterial,
-    setPorcentagemGordura, setPorcentagemMassaMagra,
+    setCpf, setAltura, setPeso, setPressaoArt,
+    setGorduraCorp, setMassMagra,
     setDescricao, setApto, IMC, resultadoIMC
 }) => {
 
@@ -55,20 +55,22 @@ const FormularioMedico: FC<Props> = ({
                     direction="column"
                     sx={{ minHeight: "20vh", border: 2, borderColor: "#120458" }}
                 >
-                    <Grid 
-                    container
-                    xs={12}
-                    alignContent="center"
-                    direction="row"
+                    <Grid
+                        item
+                        container
+                        xs={12}
+                        alignContent="center"
+                        direction="row"
                     >
                         <CampoDeTexto label='CPF Aluno:' setValue={setCpf} />
                         <CampoDeTexto label='Altura (em metros):' setValue={setAltura} />
                         <CampoDeTexto label='Peso (em KG):' setValue={setPeso} />
-                        <CampoDeTexto label='Pressao Arterial:' setValue={setPressaoArterial} />
-                        <CampoDeTexto label='% Gordura:' setValue={setPorcentagemGordura} />
-                        <CampoDeTexto label='% Massa Magra:' setValue={setPorcentagemMassaMagra} />
+                        <CampoDeTexto label='Pressao Arterial:' setValue={setPressaoArt} />
+                        <CampoDeTexto label='% Gordura:' setValue={setGorduraCorp} />
+                        <CampoDeTexto label='% Massa Magra:' setValue={setMassMagra} />
                     </Grid>
                     <Grid
+                        item
                         container
                         xs={12}
                         alignItems="center"
@@ -78,12 +80,13 @@ const FormularioMedico: FC<Props> = ({
                         <CampoDeTextoLeitura label='IMC -> Resultado ' value={resultadoIMC} />
                     </Grid>
                     <Grid
+                        item
                         container
                         xs={12}
                         alignItems="center"
                         direction="row"
                     >
-                        <Typography sx={{marginLeft:"2rem"}}> Aluno esta apto? </Typography>
+                        <Typography sx={{ marginLeft: "2rem" }}> Aluno esta apto? </Typography>
                         <Checkbox aria-label='Apto' onChange={(e) => { setApto(e.target.checked) }} />
                     </Grid>
                     <CampoDeTexto label='Descricao:' setValue={setDescricao} />

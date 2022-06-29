@@ -1,7 +1,7 @@
 import IExercicio from "./IExercicio";
 
 export default interface ITreino {
-    cpfAluno: string,
+    CPFTreino: string,
     descricao: string,
     exercicios: IExercicio[]
 }

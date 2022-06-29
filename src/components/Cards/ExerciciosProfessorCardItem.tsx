@@ -7,11 +7,12 @@ import ICardExercicioProfessor from '../../interfaces/Cards/ICardExercicioProfes
 
 
 const ExercicioProfessorCardItem: FC<ICardExercicioProfessor> = ({
-    _id, nome, descricao, handleClick
+    _id, nome, descricao, handleClickAdd, handleClickRemove
 }) => {
 
     const [series, setSeries] = useState<string>();
     const [repeticoes, setRepeticoes] = useState<string>();
+    const [exercicioAdicionado, setExercicioAdicionado] = useState<boolean>(false);
 
     const onChangeSeries = (event: ChangeEvent<HTMLInputElement>) => {
         setSeries(event.target.value);
@@ -53,13 +54,24 @@ const ExercicioProfessorCardItem: FC<ICardExercicioProfessor> = ({
                 </Grid>
             </CardContent>
             <CardActions>
-                <Button
-                    size="small"
-                    variant="outlined"
-                    onClick={() => {handleClick(_id, series, repeticoes)}}
-                >
-                    Adicionar exercicio
-                </Button>
+                {!exercicioAdicionado &&
+                    <Button
+                        size="small"
+                        variant="outlined"
+                        onClick={() => { setExercicioAdicionado(true); handleClickAdd(_id, series, repeticoes); }}
+                    >
+                        Adicionar exercicio
+                    </Button>
+                }
+                {exercicioAdicionado &&
+                    <Button
+                        size="small"
+                        variant="outlined"
+                        onClick={() => { setExercicioAdicionado(false); handleClickRemove(_id); }}
+                    >
+                        Remover exercicio
+                    </Button>
+                }
             </CardActions>
         </Card>
     );

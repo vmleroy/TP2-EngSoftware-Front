@@ -1,12 +1,12 @@
 export default interface IExam {
     _id: string,
-    cpfAluno: string,
+    CPFAluno: string,
     descricao: string,
     peso: number,
     altura: number,
-    pressaoArterial: number,
-    porcentagemGordura: number,
-    porcentagemMassaMagra: number,
+    pressaoArt: number,
+    gorduraCorp: number,
+    massMagra: number,
     IMC: number,
-    habilitado: boolean
+    estaApto: boolean
 }
