@@ -1,9 +1,7 @@
-import { FC } from "react";
 import { Grid } from "@mui/material";
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import Treinos from "./components/Treinos";
 import DadosAluno from "./components/DadosAluno";
-import Planos from "./components/Planos";
 import ExamesAluno from "./components/ExamesAluno";
 
 const Aluno = ({}) => {
@@ -22,7 +20,6 @@ const Aluno = ({}) => {
         <Cabecalho nomeNoCabecalho="Academia - Área do aluno" />
         <DadosAluno dados={"amanda"} />
         <Treinos treino={"amanda"} />
-        <Planos dados={"amanda"} />
         <ExamesAluno dados={"amanda"} />
       </Grid>
     </>
