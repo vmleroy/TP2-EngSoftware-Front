@@ -1,10 +1,20 @@
 import { Grid, Typography } from "@mui/material";
 import { FC } from "react";
 interface Props {
-  dados: string | undefined;
+  nome: string | undefined;
+  cpf: string | undefined;
+  rg: string | undefined;
+  idUsuario: string | undefined;
+  dataNascimento: Date;
 }
 
-const DadosAluno: FC<Props> = ({ dados }) => {
+const DadosAluno: FC<Props> = ({
+  nome,
+  cpf,
+  rg,
+  idUsuario,
+  dataNascimento,
+}) => {
   return (
     <>
       <Grid
@@ -38,7 +48,13 @@ const DadosAluno: FC<Props> = ({ dados }) => {
           alignItems="left"
           direction="column"
           sx={{ minHeight: "20vh", border: 2, borderColor: "#120458" }}
-        ></Grid>
+        >
+          <Typography>{nome}</Typography>
+          <Typography>{cpf}</Typography>
+          <Typography>{rg}</Typography>
+          <Typography>{idUsuario}</Typography>
+          {/* <Typography>{dataNascimento.format("DD-MM-AAAA")}</Typography> */}
+        </Grid>
       </Grid>
     </>
   );

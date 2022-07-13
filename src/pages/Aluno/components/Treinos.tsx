@@ -1,44 +1,34 @@
 import { Grid, Typography } from "@mui/material";
 import { FC } from "react";
+import IExercicio from "../../../interfaces/IExercicio";
+
 interface Props {
-  treino: string | undefined;
+  CPFTreino: string;
+  descricao: string;
+  exercicios: IExercicio[];
 }
 
-const Treinos: FC<Props> = ({ treino }) => {
+const Treinos: FC<Props> = ({ CPFTreino, descricao, exercicios }) => {
   return (
     <>
       <Grid
         container
-        width="95%"
-        margin="0.5rem"
-        alignItems="center"
-        direction="row"
-        sx={{ minHeight: "25vh" }}
+        xs={12}
+        alignItems="left"
+        direction="column"
+        sx={{ minHeight: "20vh", border: 2, borderColor: "#120458" }}
       >
-        <Grid
-          item
-          xs={12}
-          sx={{ minHeight: "5vh", backgroundColor: "#120458" }}
-        >
-          <Typography
-            sx={{
-              fontWeight: "600",
-              fontSize: "1.5rem",
-              color: "white",
-              margin: "1rem",
-            }}
-          >
-            Treinos:
-          </Typography>
-        </Grid>
-        <Grid
-          container
-          item
-          xs={12}
-          alignItems="left"
-          direction="column"
-          sx={{ minHeight: "20vh", border: 2, borderColor: "#120458" }}
-        ></Grid>
+        {CPFTreino}
+        {descricao}
+        {exercicios.map((item) => (
+          <Grid item xs={12}>
+            <Typography>{item._id}</Typography>
+            <Typography>{item.repeticoes}</Typography>
+            <Typography>{item.series}</Typography>
+            {/* <Typography>{item.tipoExercicio.nome} </Typography>
+                  <Typography>{item.tipoExercicio.descricao} </Typography> */}
+          </Grid>
+        ))}
       </Grid>
     </>
   );

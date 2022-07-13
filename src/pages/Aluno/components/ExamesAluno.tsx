@@ -1,11 +1,12 @@
 import { Grid, Typography } from "@mui/material";
 import { FC } from "react";
+import IExame from "../../../interfaces/IExame";
 
 interface Props {
-  dados: string | undefined;
+  exames: IExame[];
 }
 
-const ExamesAluno: FC<Props> = ({ dados }) => {
+const ExamesAluno: FC<Props> = ({ exames }) => {
   return (
     <>
       <Grid
@@ -39,7 +40,26 @@ const ExamesAluno: FC<Props> = ({ dados }) => {
           alignItems="left"
           direction="column"
           sx={{ minHeight: "20vh", border: 2, borderColor: "#120458" }}
-        ></Grid>
+        >
+          {exames.map((exame) => (
+            <Grid item xs={4}>
+              <Typography>{exame.CPFAluno}</Typography>
+              <Typography>{exame._id}</Typography>
+              <Typography>{exame.descricao}</Typography>
+              <Typography>{exame.altura}</Typography>
+              <Typography>{exame.IMC}</Typography>
+              <Typography>{exame.pressaoArt}</Typography>
+              <Typography>{exame.peso}</Typography>
+              <Typography>{exame.gorduraCorp}</Typography>
+              <Typography>{exame.massMagra}</Typography>
+              <Typography>
+                {exame.estaApto
+                  ? "O aluno está apto para realizar as atividades"
+                  : "O aluno não está apto para realizar as atividades"}
+              </Typography>
+            </Grid>
+          ))}
+        </Grid>
       </Grid>
     </>
   );
