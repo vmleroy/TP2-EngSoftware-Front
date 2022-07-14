@@ -51,7 +51,7 @@ const ExamesAluno: FC<Props> = ({ exames }) => {
               <Typography>{exame.pressaoArt}</Typography>
               <Typography>{exame.peso}</Typography>
               <Typography>{exame.gorduraCorp}</Typography>
-              <Typography>{exame.massMagra}</Typography>
+              <Typography>{exame.massaMagra}</Typography>
               <Typography>
                 {exame.estaApto
                   ? "O aluno está apto para realizar as atividades"

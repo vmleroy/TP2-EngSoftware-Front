@@ -31,8 +31,8 @@ const Secretaria = ({}) => {
         dataNascimento: dataNascimento,
         cartao: {
           numeroCartao: cartao.numeroCartao,
-          cvv: cartao.CVV,
-          nomeCartao: cartao.nome,
+          CVV: cartao.CVV,
+          nome: cartao.nome,
         },
         exameFeito: exameFeito,
       };
@@ -69,7 +69,6 @@ const Secretaria = ({}) => {
           setRG={setRG}
           setDataNascimento={setDataNascimento}
           setExameFeito={setExameFeito}
-          setCartao={setCartao}
         />
         <Planos dados={"amanda"} />
         <Button

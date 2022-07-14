@@ -10,8 +10,8 @@ const ExercicioProfessorCardItem: FC<ICardExercicioProfessor> = ({
     _id, nome, descricao, handleClickAdd, handleClickRemove
 }) => {
 
-    const [series, setSeries] = useState<string>();
-    const [repeticoes, setRepeticoes] = useState<string>();
+    const [series, setSeries] = useState<string>("");
+    const [repeticoes, setRepeticoes] = useState<string>("");
     const [exercicioAdicionado, setExercicioAdicionado] = useState<boolean>(false);
 
     const onChangeSeries = (event: ChangeEvent<HTMLInputElement>) => {
@@ -38,6 +38,7 @@ const ExercicioProfessorCardItem: FC<ICardExercicioProfessor> = ({
                         variant='standard'
                         sx={{ display: 'flex', alignItems: 'flex-end', width: '1.5rem', mt: '0.6rem', ml: '0.2rem' }}
                         inputProps={{ min: 0, style: { textAlign: 'center' } }}
+                        defaultValue={0}
                         onChange={onChangeSeries}
                     />
                 </Grid>
@@ -49,6 +50,7 @@ const ExercicioProfessorCardItem: FC<ICardExercicioProfessor> = ({
                         variant='standard'
                         sx={{ display: 'flex', alignItems: 'flex-end', width: '1.5rem', mt: '0.6rem', ml: '0.2rem' }}
                         inputProps={{ min: 0, style: { textAlign: 'center' } }}
+                        defaultValue={0}
                         onChange={onChangeRepeticoes}
                     />
                 </Grid>

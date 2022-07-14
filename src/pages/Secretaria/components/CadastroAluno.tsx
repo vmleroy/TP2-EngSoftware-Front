@@ -9,8 +9,6 @@ interface Props {
   setRG: React.Dispatch<React.SetStateAction<string>>;
   setDataNascimento: React.Dispatch<React.SetStateAction<string>>;
   setExameFeito: React.Dispatch<React.SetStateAction<boolean>>;
-  setCartao: React.Dispatch<React.SetStateAction<string>>;
-  cartao: ICartaoDeCredito;
 }
 
 const CadastroAluno: FC<Props> = ({
@@ -19,8 +17,6 @@ const CadastroAluno: FC<Props> = ({
   setRG,
   setDataNascimento,
   setExameFeito,
-  setCartao,
-  cartao,
 }) => {
   return (
     <>
@@ -62,12 +58,6 @@ const CadastroAluno: FC<Props> = ({
           <CampoDeTexto
             label="Data de Nascimento:"
             setValue={setDataNascimento}
-          />
-          <CampoDeTexto label="Número do cartão:" setValue={setCartao} />
-          <CampoDeTexto label="CVV:" setValue={setCartao} />
-          <CampoDeTexto
-            label="Nome do dono do cartão:"
-            setValue={setCartao.nome}
           />
 
           <Grid item container xs={12} alignItems="center" direction="row">

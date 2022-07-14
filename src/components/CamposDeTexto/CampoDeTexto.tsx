@@ -19,6 +19,7 @@ const CampoDeTexto: React.FC<Props> = ({ setValue, label }) => {
         <TextField
           label={label}
           variant="standard"
+          defaultValue={""}
           required
           onChange={onChangeValue}
           sx={{ width: "30vw" }}

@@ -6,7 +6,7 @@ export default interface IExame {
   altura: number;
   pressaoArt: number;
   gorduraCorp: number;
-  massMagra: number;
+  massaMagra: number;
   IMC: number;
   estaApto: boolean;
 }

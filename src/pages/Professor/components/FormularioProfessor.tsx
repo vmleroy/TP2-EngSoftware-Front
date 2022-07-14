@@ -13,15 +13,15 @@ import ExercicioProfessorCardItem from './ExerciciosProfessorCardItem';
 
 
 interface Props {
-    setCpf: React.Dispatch<React.SetStateAction<string|undefined>>,
-    setDescricao: React.Dispatch<React.SetStateAction<string|undefined>>,
+    setCpf: React.Dispatch<React.SetStateAction<string>>,
+    setDescricao: React.Dispatch<React.SetStateAction<string>>,
     handleSetExercicioAdd: (exercicio: IExercicio) => void
     handleSetExercicioRemove: (id: string) => void
 }
 
 const FormularioProfessor: FC<Props> = ({ setCpf, setDescricao, handleSetExercicioAdd, handleSetExercicioRemove }) => {
 
-    const [tiposExercicios, setTiposExercicios] = useState<ITipoExercicio[]>();
+    const [tiposExercicios, setTiposExercicios] = useState<ITipoExercicio[]>([]);
 
     useEffect(() => {
         axios.get('https://tp2-engsoft.herokuapp.com/tiposexercicio/')
@@ -34,8 +34,8 @@ const FormularioProfessor: FC<Props> = ({ setCpf, setDescricao, handleSetExercic
             });
     });
 
-    const handleCardCliqueAdd = (id:string, series:string|undefined, repeticoes:string|undefined) => {
-        if((series !== '0' && series !== undefined) && (repeticoes !== '0' && repeticoes !== undefined)) {
+    const handleCardCliqueAdd = (id:string, series:string, repeticoes:string) => {
+        if((series !== '0' && repeticoes !== '0')) {
             const newExercicio = {tipoExercicio:id, series:series, repeticoes:repeticoes};
             axios.post('https://tp2-engsoft.herokuapp.com/exercicios/', newExercicio)
                 .then(resposta => {

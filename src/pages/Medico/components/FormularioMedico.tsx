@@ -7,21 +7,21 @@ import CampoDeTexto from '../../../components/CamposDeTexto/CampoDeTexto';
 import CampoDeTextoLeitura from '../../../components/CamposDeTexto/CampoDeTextoLeitura';
 
 interface Props {
-    setCpf: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setAltura: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setPeso: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setPressaoArt: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setGorduraCorp: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setMassMagra: React.Dispatch<React.SetStateAction<string | undefined>>,
-    setDescricao: React.Dispatch<React.SetStateAction<string | undefined>>,
+    setCpf: React.Dispatch<React.SetStateAction<string>>,
+    setAltura: React.Dispatch<React.SetStateAction<string>>,
+    setPeso: React.Dispatch<React.SetStateAction<string>>,
+    setPressaoArt: React.Dispatch<React.SetStateAction<string>>,
+    setGorduraCorp: React.Dispatch<React.SetStateAction<string>>,
+    setMassaMagra: React.Dispatch<React.SetStateAction<string>>,
+    setDescricao: React.Dispatch<React.SetStateAction<string>>,
     setApto: React.Dispatch<React.SetStateAction<boolean>>,
-    IMC: number | undefined
-    resultadoIMC: string | undefined
+    IMC: number
+    resultadoIMC: string
 }
 
 const FormularioMedico: FC<Props> = ({
     setCpf, setAltura, setPeso, setPressaoArt,
-    setGorduraCorp, setMassMagra,
+    setGorduraCorp, setMassaMagra,
     setDescricao, setApto, IMC, resultadoIMC
 }) => {
 
@@ -67,7 +67,7 @@ const FormularioMedico: FC<Props> = ({
                         <CampoDeTexto label='Peso (em KG):' setValue={setPeso} />
                         <CampoDeTexto label='Pressao Arterial:' setValue={setPressaoArt} />
                         <CampoDeTexto label='% Gordura:' setValue={setGorduraCorp} />
-                        <CampoDeTexto label='% Massa Magra:' setValue={setMassMagra} />
+                        <CampoDeTexto label='% Massa Magra:' setValue={setMassaMagra} />
                     </Grid>
                     <Grid
                         item

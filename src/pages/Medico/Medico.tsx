@@ -7,24 +7,23 @@ import { Grid, Button } from "@mui/material";
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import FormularioMedico from "./components/FormularioMedico";
 
-const Medico = ({}) => {
-  const [cpfAluno, setCpf] = useState<string>();
-  const [altura, setAltura] = useState<string>();
-  const [peso, setPeso] = useState<string>();
-  const [pressaoArt, setPressaoArt] = useState<string>();
-  const [gorduraCorp, setGorduraCorp] = useState<string>();
-  const [massMagra, setMassMagra] = useState<string>();
-  const [descricao, setDescricao] = useState<string>();
+const Medico = ({ }) => {
+  const [cpfAluno, setCpf] = useState<string>("");
+  const [altura, setAltura] = useState<string>("");
+  const [peso, setPeso] = useState<string>("");
+  const [pressaoArt, setPressaoArt] = useState<string>("");
+  const [gorduraCorp, setGorduraCorp] = useState<string>("");
+  const [massaMagra, setMassaMagra] = useState<string>("");
+  const [descricao, setDescricao] = useState<string>("");
   const [apto, setApto] = useState<boolean>(false);
 
-  const [IMC, setIMC] = useState<number>();
-  const [resultadoIMC, setResultadoIMC] = useState<string>();
+  const [IMC, setIMC] = useState<number>(0);
+  const [resultadoIMC, setResultadoIMC] = useState<string>("");
 
   const handleCliqueBotaoIMC = (
-    altura: string | undefined,
-    peso: string | undefined
+    altura: string, peso: string
   ) => {
-    if (peso !== undefined && altura !== undefined) {
+    if (peso !== "" && altura !== "") {
       let imc = parseFloat(
         (parseFloat(peso) / (parseFloat(altura) ^ 2)).toFixed(1)
       );
@@ -44,35 +43,27 @@ const Medico = ({}) => {
   };
 
   const handleCliqueBotaoCadastro = (
-    cpfAluno: string | undefined,
-    altura: string | undefined,
-    peso: string | undefined,
-    pressaoArt: string | undefined,
-    gorduraCorp: string | undefined,
-    massMagra: string | undefined,
-    IMC: number | undefined,
-    resultadoIMC: string | undefined,
-    descricao: string | undefined,
-    apto: boolean | undefined
+    cpfAluno: string, altura: string, peso: string, pressaoArt: string,
+    gorduraCorp: string, massaMagra: string, IMC: number, resultadoIMC: string,
+    descricao: string, apto: boolean
   ) => {
-    if (IMC !== undefined) {
-      if (cpfAluno !== undefined && altura !== undefined && peso !== undefined && descricao !== undefined
-        && pressaoArt !== undefined && gorduraCorp !== undefined && massMagra !== undefined) {
-          const novoExame = {
-            CPFAluno: cpfAluno, descricao: descricao, peso: peso, altura: altura,
-            pressaoArt: pressaoArt, gorduraCorp: gorduraCorp, massMagra: massMagra,
-            IMC: IMC, apto: apto
-          }
-          axios.post("https://tp2-engsoft.herokuapp.com/exames/", novoExame)
-            .then(resposta => {
-              console.log(resposta.data);
-            })
-            .catch(erro => {
-              console.log(erro);
-            })
-        } else {
-          console.log("Dados incompletos, favor preencher todos os campos!");
+    if (IMC !== 0) {
+      if (cpfAluno !== "" && altura !== "" && peso !== "" && descricao !== "" && pressaoArt !== "" && gorduraCorp !== "" && massaMagra !== "") {
+        const novoExame = {
+          CPFAluno: cpfAluno, descricao: descricao, peso: parseFloat(peso), altura: parseFloat(altura),
+          pressaoArt: pressaoArt, gorduraCorp: gorduraCorp, massaMagra: massaMagra,
+          IMC: IMC, estaApto: apto
         }
+        axios.post("https://tp2-engsoft.herokuapp.com/exames/", novoExame)
+          .then(resposta => {
+            console.log(resposta.data);
+          })
+          .catch(erro => {
+            console.log(erro);
+          })
+      } else {
+        console.log("Dados incompletos, favor preencher todos os campos!");
+      }
     } else {
       console.log("Favor calcular IMC");
     }
@@ -97,7 +88,7 @@ const Medico = ({}) => {
           setPeso={setPeso}
           setPressaoArt={setPressaoArt}
           setGorduraCorp={setGorduraCorp}
-          setMassMagra={setMassMagra}
+          setMassaMagra={setMassaMagra}
           setDescricao={setDescricao}
           setApto={setApto}
           IMC={IMC}
@@ -120,7 +111,7 @@ const Medico = ({}) => {
               peso,
               pressaoArt,
               gorduraCorp,
-              massMagra,
+              massaMagra,
               IMC,
               resultadoIMC,
               descricao,

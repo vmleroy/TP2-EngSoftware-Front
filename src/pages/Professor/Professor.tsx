@@ -11,8 +11,8 @@ import FormularioProfessor from "./components/FormularioProfessor";
 import IExercicio from "../../interfaces/IExercicio";
 
 const Professor = ({}) => {
-  const [cpf, setCpfAluno] = useState<string>();
-  const [descricao, setDescricao] = useState<string>();
+  const [cpf, setCpfAluno] = useState<string>("");
+  const [descricao, setDescricao] = useState<string>("");
   const [exercicios, setExercicio] = useState<IExercicio[]>([]);
 
   const handleSetExercicioAdd = (exercicio: IExercicio) => {
@@ -26,9 +26,9 @@ const Professor = ({}) => {
   };
 
   const handleCliqueBotaoCadastro = (
-    cpf: string | undefined,
-    descricao: string | undefined,
-    exercicios: IExercicio[] | undefined
+    cpf: string,
+    descricao: string,
+    exercicios: IExercicio[]
   ) => {
     const newTreino = {
       CPFTreino: cpf,
