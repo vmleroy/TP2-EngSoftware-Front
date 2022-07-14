@@ -1,16 +1,16 @@
 import { Checkbox, Grid, Typography } from "@mui/material";
 import { FC } from "react";
 import CampoDeTexto from "../../../components/CamposDeTexto/CampoDeTexto";
+import ICartaoDeCredito from "../../../interfaces/ICartaoDeCredito";
 
 interface Props {
-  setCpf: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setNome: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setRG: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setDataNascimento: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setCpf: React.Dispatch<React.SetStateAction<string>>;
+  setNome: React.Dispatch<React.SetStateAction<string>>;
+  setRG: React.Dispatch<React.SetStateAction<string>>;
+  setDataNascimento: React.Dispatch<React.SetStateAction<string>>;
   setExameFeito: React.Dispatch<React.SetStateAction<boolean>>;
-  setNumeroCartao: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setBandeiraCartao: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setNomeDonoCartao: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setCartao: React.Dispatch<React.SetStateAction<string>>;
+  cartao: ICartaoDeCredito;
 }
 
 const CadastroAluno: FC<Props> = ({
@@ -19,9 +19,8 @@ const CadastroAluno: FC<Props> = ({
   setRG,
   setDataNascimento,
   setExameFeito,
-  setNumeroCartao,
-  setBandeiraCartao,
-  setNomeDonoCartao,
+  setCartao,
+  cartao,
 }) => {
   return (
     <>
@@ -64,14 +63,11 @@ const CadastroAluno: FC<Props> = ({
             label="Data de Nascimento:"
             setValue={setDataNascimento}
           />
-          <CampoDeTexto label="Número do cartão:" setValue={setNumeroCartao} />
-          <CampoDeTexto
-            label="Bandeira do cartão:"
-            setValue={setBandeiraCartao}
-          />
+          <CampoDeTexto label="Número do cartão:" setValue={setCartao} />
+          <CampoDeTexto label="CVV:" setValue={setCartao} />
           <CampoDeTexto
             label="Nome do dono do cartão:"
-            setValue={setNomeDonoCartao}
+            setValue={setCartao.nome}
           />
 
           <Grid item container xs={12} alignItems="center" direction="row">

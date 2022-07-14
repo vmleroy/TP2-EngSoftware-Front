@@ -4,48 +4,41 @@ import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import CadastroAluno from "./components/CadastroAluno";
 import Planos from "./components/Planos";
 import axios from "axios";
+import ICartaoDeCredito from "../../interfaces/ICartaoDeCredito";
 
 const Secretaria = ({}) => {
-  const [cpfAluno, setCpf] = useState<string>();
-  const [nome, setNome] = useState<string>();
-  const [rg, setRG] = useState<string>();
-  const [dataNascimento, setDataNascimento] = useState<string>();
-  const [numeroCartao, setNumeroCartao] = useState<string>();
-  const [bandeiraCartao, setBandeiraCartao] = useState<string>();
-  const [nomeDonoCartao, setNomeDonoCartao] = useState<string>();
+  const [cpfAluno, setCpf] = useState<string>("");
+  const [nome, setNome] = useState<string>("");
+  const [rg, setRG] = useState<string>("");
+  const [dataNascimento, setDataNascimento] = useState<string>("");
+  const [cartao, setCartao] = useState<ICartaoDeCredito | null>(null);
   const [exameFeito, setExameFeito] = useState<boolean>(false);
 
   const handleCliqueBotaoCadastrarAluno = (
-    cpfAluno: string | undefined,
-    nome: string | undefined,
-    rg: string | undefined,
-    dataNascimento: string | undefined,
-    numeroCartao: string | undefined,
-    bandeiraCartao: string | undefined,
-    nomeDonoCartao: string | undefined,
-    exameFeito: boolean | undefined
+    cpfAluno: string,
+    nome: string,
+    rg: string,
+    dataNascimento: string,
+    cartao: ICartaoDeCredito | null,
+    exameFeito: boolean
   ) => {
-    if (
-      cpfAluno !== undefined &&
-      nome !== undefined &&
-      rg !== undefined &&
-      dataNascimento !== undefined &&
-      numeroCartao !== undefined &&
-      bandeiraCartao !== undefined &&
-      nomeDonoCartao !== undefined
-    ) {
+    if (cpfAluno && nome && rg && dataNascimento && cartao) {
+      console.log("cadastro aluno");
       const novoAluno = {
-        CPFAluno: cpfAluno,
+        CPF: cpfAluno,
         nome: nome,
-        rg: rg,
+        RG: rg,
         dataNascimento: dataNascimento,
-        numeroCartao: numeroCartao,
-        bandeiraCartao: bandeiraCartao,
-        nomeDonoCartao: nomeDonoCartao,
+        cartao: {
+          numeroCartao: cartao.numeroCartao,
+          cvv: cartao.CVV,
+          nomeCartao: cartao.nome,
+        },
         exameFeito: exameFeito,
       };
+
       axios
-        .post("https://tp2-engsoft.herokuapp.com/aluno/", novoAluno)
+        .post("https://tp2-engsoft.herokuapp.com/alunos/", novoAluno)
         .then((resposta) => {
           console.log(resposta.data);
         })
@@ -76,9 +69,7 @@ const Secretaria = ({}) => {
           setRG={setRG}
           setDataNascimento={setDataNascimento}
           setExameFeito={setExameFeito}
-          setNumeroCartao={setNumeroCartao}
-          setBandeiraCartao={setBandeiraCartao}
-          setNomeDonoCartao={setNomeDonoCartao}
+          setCartao={setCartao}
         />
         <Planos dados={"amanda"} />
         <Button
@@ -90,9 +81,7 @@ const Secretaria = ({}) => {
               nome,
               rg,
               dataNascimento,
-              numeroCartao,
-              bandeiraCartao,
-              nomeDonoCartao,
+              cartao,
               exameFeito
             )
           }

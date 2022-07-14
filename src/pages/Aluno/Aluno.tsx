@@ -8,6 +8,10 @@ import ITreino from "../../interfaces/ITreino";
 import axios from "axios";
 import IAluno from "../../interfaces/IAluno";
 
+// arrumar aluno e como q pega ele pelo id,
+// arrumar o trem do cartao, arrumar tb treinos p ser do aluno
+// arrumar tb a tabela dos planos e exibir aqui o plano do aluno
+
 const Aluno = ({}) => {
   const [treinos, setTreinos] = useState<ITreino[]>([]);
   useEffect(() => {
@@ -22,12 +26,13 @@ const Aluno = ({}) => {
   });
 
   const [aluno, setAluno] = useState<IAluno>();
-
+  const idAluno = "62cf4d5328a25a18a8e04cdc";
   useEffect(() => {
     axios
-      .get("https://tp2-engsoft.herokuapp.com/alunos/")
+      .get(`https://tp2-engsoft.herokuapp.com/alunos/id/${idAluno}`)
       .then((resposta) => {
         setAluno(resposta.data);
+        console.log(resposta);
       })
       .catch((erro) => {
         console.log(erro);
@@ -47,13 +52,15 @@ const Aluno = ({}) => {
         }}
       >
         <Cabecalho nomeNoCabecalho="Academia - Área do aluno" />
-        <DadosAluno
-          nome={aluno.nome}
-          cpf={aluno.CPF}
-          rg={aluno.RG}
-          idUsuario={aluno._idUsuario}
-          dataNascimento={aluno.dataNasc}
-        />
+        {aluno && (
+          <DadosAluno
+            nome={aluno.nome}
+            cpf={aluno.CPF}
+            rg={aluno.RG}
+            idUsuario={aluno._idUsuario}
+            dataNascimento={aluno.dataNasc}
+          />
+        )}
         <Grid
           container
           width="95%"
@@ -86,7 +93,7 @@ const Aluno = ({}) => {
             />
           ))}
         </Grid>
-        <ExamesAluno exames={aluno.exames} />
+        {aluno && <ExamesAluno exames={aluno.exames} />}
       </Grid>
     </>
   );

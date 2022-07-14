@@ -53,7 +53,7 @@ const DadosAluno: FC<Props> = ({
           <Typography>{cpf}</Typography>
           <Typography>{rg}</Typography>
           <Typography>{idUsuario}</Typography>
-          {/* <Typography>{dataNascimento.format("DD-MM-AAAA")}</Typography> */}
+          <Typography>{dataNascimento.toLocaleDateString("pt-BR")}</Typography>
         </Grid>
       </Grid>
     </>
