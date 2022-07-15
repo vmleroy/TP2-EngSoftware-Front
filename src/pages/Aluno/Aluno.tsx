@@ -7,26 +7,12 @@ import { useEffect, useState } from "react";
 import ITreino from "../../interfaces/ITreino";
 import axios from "axios";
 import IAluno from "../../interfaces/IAluno";
-
-// arrumar aluno e como q pega ele pelo id,
-// arrumar o trem do cartao, arrumar tb treinos p ser do aluno
-// arrumar tb a tabela dos planos e exibir aqui o plano do aluno
+import IPlano from "../../interfaces/IPlano";
 
 const Aluno = ({}) => {
-  const [treinos, setTreinos] = useState<ITreino[]>([]);
-  useEffect(() => {
-    axios
-      .get("https://tp2-engsoft.herokuapp.com/treinos/")
-      .then((resposta) => {
-        setTreinos(resposta.data);
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
-  });
+  const idAluno = "62d0384fd5b88fb7f200b714";
 
   const [aluno, setAluno] = useState<IAluno>();
-  const idAluno = "62cf4d5328a25a18a8e04cdc";
   useEffect(() => {
     axios
       .get(`https://tp2-engsoft.herokuapp.com/alunos/id/${idAluno}`)
@@ -37,8 +23,38 @@ const Aluno = ({}) => {
       .catch((erro) => {
         console.log(erro);
       });
-  });
+  }, []);
 
+  const [treinos, setTreinos] = useState<ITreino[]>([]);
+  useEffect(() => {
+    if (aluno) {
+      axios
+        .get(`https://tp2-engsoft.herokuapp.com/treinos/id/${aluno.CPF}`)
+        .then((resposta) => {
+          setTreinos(resposta.data);
+        })
+        .catch((erro) => {
+          console.log(erro);
+        });
+    }
+  }, [aluno]);
+
+  const [planoAluno, setPlanoAluno] = useState<IPlano[]>([]);
+  useEffect(() => {
+    if (aluno && aluno.planos.length > 0) {
+      axios
+        .get(`https://tp2-engsoft.herokuapp.com/planos/id/${aluno.CPF}`)
+        .then((resposta) => {
+          setPlanoAluno([resposta.data]);
+          console.log(resposta);
+        })
+        .catch((erro) => {
+          console.log(erro);
+        });
+    }
+  }, [aluno]);
+
+  console.log(planoAluno);
   return (
     <>
       <Grid
@@ -57,7 +73,6 @@ const Aluno = ({}) => {
             nome={aluno.nome}
             cpf={aluno.CPF}
             rg={aluno.RG}
-            idUsuario={aluno._idUsuario}
             dataNascimento={aluno.dataNasc}
           />
         )}
@@ -94,6 +109,71 @@ const Aluno = ({}) => {
           ))}
         </Grid>
         {aluno && <ExamesAluno exames={aluno.exames} />}
+        <Grid
+          container
+          width="95%"
+          margin="0.5rem"
+          alignItems="center"
+          direction="row"
+          sx={{ minHeight: "25vh" }}
+        >
+          <Grid
+            item
+            xs={12}
+            sx={{ minHeight: "5vh", backgroundColor: "#120458" }}
+          >
+            <Typography
+              sx={{
+                fontWeight: "600",
+                fontSize: "1.5rem",
+                color: "white",
+                margin: "1rem",
+              }}
+            >
+              Planos:
+            </Typography>
+          </Grid>
+          {planoAluno?.map((plano) => (
+            <>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`Nome do plano:${plano.nome}`}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`Descrição:${plano.descricao}`}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`Aulas:${plano.aulas}`}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`Valor: R$ ${plano.preco}`}
+              </Typography>
+            </>
+          ))}
+        </Grid>
       </Grid>
     </>
   );

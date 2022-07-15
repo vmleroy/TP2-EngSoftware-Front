@@ -3,14 +3,12 @@ import IExame from "./IExame";
 import IPlano from "./IPlano";
 
 export default interface IAluno {
-    _id: string,
-    _idUsuario: string,
-    nome: string,
-    CPF: string,
-    RG: string,
-    dataNasc: Date,
-    cartaoCred: ICartaoDeCredito,
-    planos: IPlano[],
-    exames: IExame[]
-    
+  _id: string;
+  nome: string;
+  CPF: string;
+  RG: string;
+  dataNasc: string;
+  cartaoCred: ICartaoDeCredito;
+  planos: IPlano[];
+  exames: IExame[];
 }

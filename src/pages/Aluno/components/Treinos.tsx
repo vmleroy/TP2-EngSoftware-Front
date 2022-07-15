@@ -18,15 +18,60 @@ const Treinos: FC<Props> = ({ CPFTreino, descricao, exercicios }) => {
         direction="column"
         sx={{ minHeight: "20vh", border: 2, borderColor: "#120458" }}
       >
-        <Typography> {CPFTreino}</Typography>
-        <Typography>{descricao} </Typography>
+        <Typography
+          sx={{
+            fontWeight: "600",
+            fontSize: "1rem",
+            marginLeft: "2rem",
+          }}
+        >
+          {`CPF aluno: ${CPFTreino}`}
+        </Typography>
+        <Typography
+          sx={{
+            fontWeight: "600",
+            fontSize: "1rem",
+            marginLeft: "2rem",
+          }}
+        >
+          {`Descrição do treino: ${descricao}`}
+        </Typography>
         {exercicios.map((item) => (
           <Grid item xs={12}>
-            <Typography>{item._id}</Typography>
-            <Typography>{item.repeticoes}</Typography>
-            <Typography>{item.series}</Typography>
-            <Typography>{item.tipoExercicio?.nome || ""} </Typography>
-            <Typography>{item.tipoExercicio?.descricao || ""} </Typography>
+            <Typography
+              sx={{
+                fontWeight: "600",
+                fontSize: "1rem",
+                marginLeft: "2rem",
+              }}
+            >
+              {`Número de repetições: ${item.repeticoes} `}
+            </Typography>
+            <Typography
+              sx={{
+                fontWeight: "600",
+                fontSize: "1rem",
+                marginLeft: "2rem",
+              }}
+            >
+              {`Número de séries: ${item.series} `}
+            </Typography>
+            <Typography
+              sx={{
+                fontWeight: "600",
+                fontSize: "1rem",
+              }}
+            >
+              {item.tipoExercicio?.nome || ""}
+            </Typography>
+            <Typography
+              sx={{
+                fontWeight: "600",
+                fontSize: "1rem",
+              }}
+            >
+              {item.tipoExercicio?.descricao || ""}
+            </Typography>
           </Grid>
         ))}
       </Grid>

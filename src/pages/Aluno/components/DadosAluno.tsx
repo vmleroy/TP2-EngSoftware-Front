@@ -1,20 +1,13 @@
 import { Grid, Typography } from "@mui/material";
 import { FC } from "react";
 interface Props {
-  nome: string | undefined;
-  cpf: string | undefined;
-  rg: string | undefined;
-  idUsuario: string | undefined;
-  dataNascimento: Date;
+  nome: string;
+  cpf: string;
+  rg: string;
+  dataNascimento: string;
 }
 
-const DadosAluno: FC<Props> = ({
-  nome,
-  cpf,
-  rg,
-  idUsuario,
-  dataNascimento,
-}) => {
+const DadosAluno: FC<Props> = ({ nome, cpf, rg, dataNascimento }) => {
   return (
     <>
       <Grid
@@ -47,13 +40,48 @@ const DadosAluno: FC<Props> = ({
           xs={12}
           alignItems="left"
           direction="column"
-          sx={{ minHeight: "20vh", border: 2, borderColor: "#120458" }}
+          sx={{
+            minHeight: "20vh",
+            border: 2,
+            borderColor: "#120458",
+          }}
         >
-          <Typography>{nome}</Typography>
-          <Typography>{cpf}</Typography>
-          <Typography>{rg}</Typography>
-          <Typography>{idUsuario}</Typography>
-          <Typography>{dataNascimento.toLocaleDateString("pt-BR")}</Typography>
+          <Typography
+            sx={{
+              fontWeight: "600",
+              fontSize: "1rem",
+              marginLeft: "2rem",
+            }}
+          >
+            {` Nome aluno: ${nome}`}
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: "600",
+              fontSize: "1rem",
+              marginLeft: "2rem",
+            }}
+          >
+            {`CPF aluno: ${cpf}`}
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: "600",
+              fontSize: "1rem",
+              marginLeft: "2rem",
+            }}
+          >
+            {`RG aluno: ${rg}`}
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: "600",
+              fontSize: "1rem",
+              marginLeft: "2rem",
+            }}
+          >
+            {`Data Nascimento:${dataNascimento}`}
+          </Typography>
         </Grid>
       </Grid>
     </>

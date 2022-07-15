@@ -43,16 +43,85 @@ const ExamesAluno: FC<Props> = ({ exames }) => {
         >
           {exames.map((exame) => (
             <Grid item xs={4}>
-              <Typography>{exame.CPFAluno}</Typography>
-              <Typography>{exame._id}</Typography>
-              <Typography>{exame.descricao}</Typography>
-              <Typography>{exame.altura}</Typography>
-              <Typography>{exame.IMC}</Typography>
-              <Typography>{exame.pressaoArt}</Typography>
-              <Typography>{exame.peso}</Typography>
-              <Typography>{exame.gorduraCorp}</Typography>
-              <Typography>{exame.massaMagra}</Typography>
-              <Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`CPF aluno${exame.CPFAluno}`}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`Descrição do exame: ${exame.descricao} `}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`Altura do alunos: ${exame.altura} `}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`IMC: ${exame.IMC} `}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`Pressão Arterial: ${exame.pressaoArt}`}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`Peso: ${exame.peso} `}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`Gordura Corporal: ${exame.gorduraCorp}`}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
+                {`Massa Magra: ${exame.massaMagra}`}
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  marginLeft: "2rem",
+                }}
+              >
                 {exame.estaApto
                   ? "O aluno está apto para realizar as atividades"
                   : "O aluno não está apto para realizar as atividades"}
