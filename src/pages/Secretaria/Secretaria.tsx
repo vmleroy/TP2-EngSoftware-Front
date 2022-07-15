@@ -51,7 +51,7 @@ const Secretaria = ({ }) => {
               axios.post("https://tp2-engsoft.herokuapp.com/usuarios", usuario)
                 .then((resposta_usuario) => {
                   console.log(resposta_usuario.data);
-                  const aluno = { nome: nome, usuario: resposta_usuario.data, CPF: cpfAluno, RG: rg, dataNasc: dataNascimento, cartaoCred: resposta_cartao.data, planos: resposta_plano.data, exames: [] };
+                  const aluno = { nome: nome, usuario: resposta_usuario.data.usuarioCriado._id, CPF: cpfAluno, RG: rg, dataNasc: dataNascimento, cartaoCred: resposta_cartao.data, planos: resposta_plano.data, exames: [] };
                   axios.post("https://tp2-engsoft.herokuapp.com/alunos", aluno)
                     .then((resposta_aluno) => {
                       console.log(resposta_aluno.data);

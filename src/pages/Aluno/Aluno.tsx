@@ -8,9 +8,11 @@ import ITreino from "../../interfaces/ITreino";
 import axios from "axios";
 import IAluno from "../../interfaces/IAluno";
 import IPlano from "../../interfaces/IPlano";
+import IExame from "../../interfaces/IExame";
 
 const Aluno = ({}) => {
-  const idAluno = "62d0384fd5b88fb7f200b714";
+
+  const idAluno = document.cookie.split('id_user=')[1].split(';')[0]
 
   const [aluno, setAluno] = useState<IAluno>();
   useEffect(() => {
@@ -42,19 +44,24 @@ const Aluno = ({}) => {
   const [planoAluno, setPlanoAluno] = useState<IPlano[]>([]);
   useEffect(() => {
     if (aluno && aluno.planos.length > 0) {
-      axios
-        .get(`https://tp2-engsoft.herokuapp.com/planos/id/${aluno.CPF}`)
-        .then((resposta) => {
-          setPlanoAluno([resposta.data]);
-          console.log(resposta);
-        })
-        .catch((erro) => {
-          console.log(erro);
-        });
+        setPlanoAluno(aluno.planos);
     }
   }, [aluno]);
 
-  console.log(planoAluno);
+  const [exames, setExames] = useState<IExame[]>([]);
+    useEffect(() => {
+        if (aluno) {
+            axios
+                .get(`https://tp2-engsoft.herokuapp.com/exames/id/${aluno.CPF}`)
+                .then((resposta) => {
+                    setExames(resposta.data);
+                })
+                .catch((erro) => {
+                    console.log(erro);
+                });
+        }
+    }, [aluno]);
+
   return (
     <>
       <Grid
@@ -102,13 +109,12 @@ const Aluno = ({}) => {
           </Grid>
           {treinos.map((treino) => (
             <Treinos
-              CPFTreino={treino.CPFTreino}
               descricao={treino.descricao}
               exercicios={treino.exercicios}
             />
           ))}
         </Grid>
-        {aluno && <ExamesAluno exames={aluno.exames} />}
+        {aluno && <ExamesAluno exames={exames} />}
         <Grid
           container
           width="95%"
@@ -153,15 +159,7 @@ const Aluno = ({}) => {
               >
                 {`Descrição:${plano.descricao}`}
               </Typography>
-              <Typography
-                sx={{
-                  fontWeight: "600",
-                  fontSize: "1rem",
-                  marginLeft: "2rem",
-                }}
-              >
-                {`Aulas:${plano.aulas}`}
-              </Typography>
+
               <Typography
                 sx={{
                   fontWeight: "600",

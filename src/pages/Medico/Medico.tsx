@@ -25,7 +25,7 @@ const Medico = ({ }) => {
   ) => {
     if (peso !== "" && altura !== "") {
       let imc = parseFloat(
-        (parseFloat(peso) / (parseFloat(altura) ^ 2)).toFixed(1)
+        (parseFloat(peso) / ((parseFloat(altura) ** 2))).toFixed(1)
       );
       setIMC(imc);
 

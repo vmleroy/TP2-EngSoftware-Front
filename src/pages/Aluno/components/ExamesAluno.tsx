@@ -43,15 +43,7 @@ const ExamesAluno: FC<Props> = ({ exames }) => {
         >
           {exames.map((exame) => (
             <Grid item xs={4}>
-              <Typography
-                sx={{
-                  fontWeight: "600",
-                  fontSize: "1rem",
-                  marginLeft: "2rem",
-                }}
-              >
-                {`CPF aluno${exame.CPFAluno}`}
-              </Typography>
+
               <Typography
                 sx={{
                   fontWeight: "600",

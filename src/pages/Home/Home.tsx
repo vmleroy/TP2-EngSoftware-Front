@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-
+import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
 import { Button, Grid } from '@mui/material'
@@ -22,7 +22,24 @@ const Home = ({ }) => {
   const [senha, setSenha] = useState<string>();
 
   const handleCliqueBotao = (email: string | undefined, senha: string | undefined) => {
-    console.log(email, senha);
+      axios.post('https://tp2-engsoft.herokuapp.com/usuarios/login', { email: email, senha:senha })
+          .then((resposta) => {
+              console.debug(resposta.data);
+              document.cookie = "status="+resposta.data["tipo"];
+              document.cookie = "id_user=" + resposta.data["id"];
+
+              const status = document.cookie.split('status=')[1].split(';')[0]
+              if (['medico', 'aluno', 'professor', 'secretaria'].includes(status.toLowerCase())){
+                  navigate("/" + status.toLowerCase());
+              }
+
+
+          })
+          .catch((erro) => {
+              console.log(erro);
+              document.cookie = "status=guest";
+
+          });
   };
 
   return (

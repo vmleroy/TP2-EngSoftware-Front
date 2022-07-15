@@ -3,12 +3,11 @@ import { FC } from "react";
 import IExercicio from "../../../interfaces/IExercicio";
 
 interface Props {
-  CPFTreino: string;
   descricao: string;
   exercicios: IExercicio[];
 }
 
-const Treinos: FC<Props> = ({ CPFTreino, descricao, exercicios }) => {
+const Treinos: FC<Props> = ({ descricao, exercicios }) => {
   return (
     <>
       <Grid
@@ -18,15 +17,7 @@ const Treinos: FC<Props> = ({ CPFTreino, descricao, exercicios }) => {
         direction="column"
         sx={{ minHeight: "20vh", border: 2, borderColor: "#120458" }}
       >
-        <Typography
-          sx={{
-            fontWeight: "600",
-            fontSize: "1rem",
-            marginLeft: "2rem",
-          }}
-        >
-          {`CPF aluno: ${CPFTreino}`}
-        </Typography>
+
         <Typography
           sx={{
             fontWeight: "600",
